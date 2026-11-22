@@ -1,0 +1,2 @@
+Refund for customer with Id 11 for Gold-tier customer reports inference is too slow and requests a refund.
+Refund for customer with Id 11 for Gold-tier customer reports inference is too slow and requests a refund.
