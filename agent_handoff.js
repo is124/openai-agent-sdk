@@ -2,6 +2,7 @@ import 'dotenv/config';
 import {Agent, run, tool} from "@openai/agents";
 import {z} from 'zod'
 import fs from 'node:fs/promises'
+import { RECOMMENDED_PROMPT_PREFIX } from '@openai/agents-core/extensions';
 
 // Refund Agent
 const processRefund = tool({
@@ -46,7 +47,7 @@ const salesAgent = new Agent({
 
 const receptionAgent = new Agent({
     name: 'Reception Agent',
-    instructions: 'Choose one handoff. Send explicit refund requests directly to the Refund Agent, even when the customer also mentions a plan or a performance complaint. Send plan questions, onboarding requests, and performance complaints without a refund request to the Sales agent. Ask a clarifying question if the requested action is unclear.',
+    instructions: `${RECOMMENDED_PROMPT_PREFIX} Choose one handoff. Send explicit refund requests directly to the Refund Agent, even when the customer also mentions a plan or a performance complaint. Send plan questions, onboarding requests, and performance complaints without a refund request to the Sales agent. Ask a clarifying question if the requested action is unclear.`,
     modelSettings: {parallelToolCalls: false},
     handoffs: [salesAgent, refundAgent]
 })
